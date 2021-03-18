@@ -1,10 +1,18 @@
+import { RemainTimeDate } from './countDown'''
+
 export enum EventName {
-  func1 = 'func1',
+  CountdownStart = 'CountdownStart',
+  CountdownStop = 'CountdownStop',
+  CountdownPause = 'CountdownPause',
+  Countdown = 'Countdown'
 }
 
 // 事件名和参数之间的关系
 export interface EventCallbackMap {
-  [EventName.func1]: [string] | [string, string] | [string, boolean];
+  [EventName.CountdownStart]: [];
+  [EventName.CountdownStop]: [];
+  [EventName.CountdownPause]: [];
+  [EventName.Countdown]: [RemainTimeDate];
 }
 
 export class EventEmitter<T extends EventName = any> {
@@ -67,18 +75,3 @@ export class EventEmitter<T extends EventName = any> {
   }
 }
 
-
-
-const event = new EventEmitter<EventName>();
-
-event.on(EventName.func1, (v1, v2) => {
-
-})
-
-event.emit(EventName.func1, '1')
-
-event.on(EventName.func1, (v1, v2) => {
-
-})
-
-event.emit(EventName.func1, '1', false)
