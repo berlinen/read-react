@@ -199,6 +199,8 @@ function intervalSchedule(sums) {
 
   const sortArray = sums.sort((a, b) => a[1] - b[1]);
 
+  console.log(sortArray)
+
   let count = 1; // 至少有一个互不相交的区间
   let xEnd = sortArray[0][1];
 
