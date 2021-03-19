@@ -150,4 +150,28 @@ console.log(coinChange([1,2,3,5],21))
  *
  * 如果 s1[i] !== s2[j] 那么s1[i]和s2[j]中至少有一个字符串不存在lcs中， 所以从这两个中取一个最大值
  *
+ * Math.max(dep[i-1][j], dp[i][j-1]);
+ *
+ * 总结
+ *
+ * 涉及两个字符串或者数组的时候， do数组含义一般差不多
+ * 子数组arr[0...i]和子数组arr2[0...j]我们要求的子序列长度dp[i][j]
  */
+
+function longestCommonSubsequence(text1, text2) {
+  const n = text1.length;
+  const m = text2.length;
+  const dp = Array.from(new Array(n + 1), () => new Array(m + 1).fill(0));
+
+  for(let i = 1; i <= n; i++) {
+    for (let j = 1; j <= m; j++) {
+     if(text1[i -1] === text2[j - 1]) {
+       dp[i][j] = dp[i - 1][j - 1] + 1;
+     } else {
+       dp[i][j] = Math.max(dp[i][j-1], dp[i-1][j])
+     }
+    }
+  }
+
+  return dp[n][m];
+}
