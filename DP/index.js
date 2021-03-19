@@ -157,7 +157,7 @@ console.log(coinChange([1,2,3,5],21))
  * 涉及两个字符串或者数组的时候， do数组含义一般差不多
  * 子数组arr[0...i]和子数组arr2[0...j]我们要求的子序列长度dp[i][j]
  */
-
+// babcde => ace 3
 function longestCommonSubsequence(text1, text2) {
   const n = text1.length;
   const m = text2.length;
@@ -175,3 +175,43 @@ function longestCommonSubsequence(text1, text2) {
 
   return dp[n][m];
 }
+
+
+/**
+ * 贪心算法
+ * 除了dp的各种特征外 还需要满嘴贪心选择的特性
+ *
+ * 贪心选择性质 每一步做错一个局部的最优选择，那么最终结果就是全局最优
+ *
+ * 有很多[start, end] 设计一个算法 算出这些区间中 最多有几个互不相交的区间
+ *
+ * // intvs [[1,3], [2, 4], [3, 6]]
+ * [1,3] [2,4] 输出2
+ *
+ * 从可选区间all中，选出 end最小的区间x
+ * 把所有与x相交的区间从all中删除
+ * 重复上边两个步骤 知道all为空，之前选出的各种x区间，就是要求的结果
+ *
+ */
+// [[1, 10], [2, 4]]
+function intervalSchedule(sums) {
+  if(sums.length === 0) return 0;
+
+  const sortArray = sums.sort((a, b) => a[1] - b[1]);
+
+  let count = 1; // 至少有一个互不相交的区间
+  let xEnd = sortArray[0][1];
+
+  for(let item of sums) {
+    const start = item[0];
+    if(start >= xEnd) {
+      count++;
+      xEnd = item[1];
+    }
+  }
+
+  return count;
+}
+
+console.log(intervalSchedule([[9, 30], [0, 1], [44,100]]))
+
