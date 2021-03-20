@@ -172,9 +172,11 @@ function longestCommonSubsequence(text1, text2) {
      }
     }
   }
-
+  console.log(dp)
   return dp[n][m];
 }
+
+console.log(longestCommonSubsequence('abacde', 'ac'))
 
 
 /**
@@ -217,3 +219,58 @@ function intervalSchedule(sums) {
 
 console.log(intervalSchedule([[9, 30], [0, 1], [44,100]]))
 
+function a () {
+  return 10
+}
+
+console.log(a());
+
+
+// 波兰表达式
+let tokens = ["10","6","9","3","+","-11","*","/","*","17","+","5","+"];
+function evalRPN(tokens) {
+  let stack = [];
+  for(let item of tokens) {
+    if(parseInt(item) || parseInt(item) === 0) {
+      stack.push(item);
+      continue
+    }
+
+    const end = stack.pop() - 0;
+    const first = stack.pop() - 0;
+
+    if(item === "+") stack.push(end + first)
+    if(item === "-") stack.push(first - end)
+    if(item === "*") stack.push(first * end)
+    if(item === "/") stack.push(parseInt(first / end))
+  }
+
+  return stack[0]
+}
+evalRPN(tokens)
+
+// 求和
+function ListNode(val, next) {
+  this.val = (val === undefined ? 0 : val);
+  this.next = (next === undefined ? null : next)
+}
+var addTwoNumbers = function(l1, l2) {
+  let c = 0
+     let r = new ListNode()
+     let p = r
+     let p1 = l1, p2 = l2
+     while(p1||p2||c) {
+         c += ((p1&&p1.val)||0)+((p2&&p2.val)||0)
+         let node = new ListNode(c%10)
+         p.next = node
+         c = parseInt(c/10)
+         p1 && (p1 = p1.next)
+         p2 && (p2 = p2.next)
+         p = p.next
+     }
+     console.log(r.next)
+     return r.next
+ };
+
+ addTwoNumbers([9,9,9,9,9,9,9], [9,9,9,9])
+ // console.log(ListNode([9,9,9,9,9,9,9], [9,9,9,9]))
