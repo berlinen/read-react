@@ -1,17 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from './react';
+import ReactDom from './react-dom';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+class Log ex
+
+ReactDom.render(
+  <div className="h1" onEvent="event" prop1="prop1" prop2={{a: 1}}>
+    现在时间：
+    {new Date().getTime()}
+    <p>p-tag</p>
+  </div>,
   document.getElementById('root')
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+)
