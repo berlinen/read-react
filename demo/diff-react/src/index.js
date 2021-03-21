@@ -13,8 +13,16 @@ class Counter extends React.Component {
     console.log('will mount')
   }
 
+  componentWillUpdate() {
+    console.log('will update')
+  }
+
   componentDidMount () {
     console.log('did mount')
+  }
+
+  componentDidUpdate () {
+    console.log('did update')
   }
 
   componentWillReceiveProps(props, state) {

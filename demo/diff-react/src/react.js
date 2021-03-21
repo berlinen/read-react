@@ -24,7 +24,7 @@ class Component {
     } else {
       Object.assign(this.state, newState);
     }
-    console.log(this.state)
+    // 以队列的形式来异步setsate
     // 调用renderComponent进行渲染
     renderComponent(this);
   }
