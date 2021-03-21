@@ -18,6 +18,7 @@ export const setComponentProps = (componentInstance, props) => {
 }
 
 export function renderComponent(componentInstance) {
+  console.log('componentInstance', componentInstance)
   if(componentInstance.base && componentInstance.componentWillUpdate) {
     componentInstance.componentWillUpdate();
   }
@@ -35,6 +36,11 @@ export function renderComponent(componentInstance) {
     if(componentInstance.componentDidMount) {
       componentInstance.componentDidMount();
     }
+  }
+
+  if(componentInstance.base && componentInstance.base.parentNode) {
+    // 每次更新之后，把内容渲染到父节点的dom中替换
+    componentInstance.base.parentNode.replaceChild(componentDomNode,componentInstance.base);
   }
 
   componentInstance.base = componentDomNode; // 第一次渲染之后的标记
@@ -57,7 +63,9 @@ export const render = (vnode, container) => {
 
   // Componet
   if(typeof vnode.type === 'function') {
+    // 创建组件实例
     const component = createComponent(vnode.type, vnode.props, vnode);
+    // 设置组件props并渲染
     setComponentProps(component, vnode.props);
     if(container) {
       container.appendChild(component.base);
