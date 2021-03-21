@@ -95,7 +95,7 @@ function setDOMArrtribute (dom, key, value) {
   if(key === 'className') key ='class';
 
   if(/^on/.test(key)) {
-    // event
+    dom[key.toLowerCase()] = value;
     // console.log('event')
   } else if(key === 'style') {
     // 样式配置，处理驼峰样式的属性，处理单位
