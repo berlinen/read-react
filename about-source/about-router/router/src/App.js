@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import { Route, Link } from './Router';
 
 function Home() {
   return  (
@@ -9,21 +9,30 @@ function Home() {
 
 function About() {
   return  (
-    <div>Abouts</div>
+    <div>About</div>
+  )
+}
+
+function News(props) {
+  console.log('a', props);
+  return  (
+    <div>News</div>
   )
 }
 
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
-        <Link to="/home">home</Link>
-        <Link to="/about">about</Link>
-        <Switch>
-          <Route path="/home" component={Home} />
-          <Route path="/about" component={About} />
-        </Switch>
-      </BrowserRouter>
+      <>
+        <Link to="/home">home </Link>
+        <Link to="/about">about </Link>
+        <Link to="/news">news</Link>
+        <Route path="/home">
+          <Home />
+        </Route>
+        <Route path="/about" componet={About} />
+        <Route path="/news" render={props => <News {...props} /> } />
+      </>
     </div>
   );
 }
