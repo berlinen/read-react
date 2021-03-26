@@ -22,7 +22,7 @@ export class Route extends React.Component {
   }
 
   componentWillUnmount () {
-    this.unlisten && this.unlisten();
+    this.unlisten?.();
   }
 
   render () {
@@ -38,11 +38,8 @@ export class Route extends React.Component {
        return  <ChildComponent match={matchDetail} />
      }
 
-     if(render && typeof render === 'function') {
-       return render({a: 1, match: matchDetail})
-     }
+     return render?.({a: 1, match: matchDetail}) ?? children;
 
-     return children;
   }
 }
 
