@@ -4,6 +4,7 @@ import {
   createHashHistory,
   createMemoryHistory
 } from 'history';
+import { match } from 'path-to-regexp';
 
 const history = createBrowserHistory();
 
@@ -14,7 +15,7 @@ function matchPath(path) {
 export class Route extends React.Component {
   componentWillMount() {
     const unlisten = history.listen((location, action) => {
-      console.log(location, history);
+      // console.log(location, history);
       this.forceUpdate();
     });
     this.unlisten = unlisten;
@@ -27,16 +28,18 @@ export class Route extends React.Component {
   render () {
      const { path, children, componet: ChildComponent, render } = this.props;
 
-     const match = matchPath(path);
+     // const match = matchPath(path);
+     const matcher = match(path);
+     const matchDetail = matcher(window.location.pathname);
 
-     if(!match) return null;
+     if(!matchDetail) return null;
 
      if(ChildComponent) {
-       return  <ChildComponent />
+       return  <ChildComponent match={matchDetail} />
      }
 
      if(render && typeof render === 'function') {
-       return render({a: 1})
+       return render({a: 1, match: matchDetail})
      }
 
      return children;

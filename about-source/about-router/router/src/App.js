@@ -7,9 +7,10 @@ function Home() {
   )
 }
 
-function About() {
+function About({ match = {} }) {
+  console.log('match',match)
   return  (
-    <div>About</div>
+    <div>About: {match?.params?.id}</div>
   )
 }
 
@@ -30,7 +31,7 @@ function App() {
         <Route path="/home">
           <Home />
         </Route>
-        <Route path="/about" componet={About} />
+        <Route path="/about/:id" componet={About} />
         <Route path="/news" render={props => <News {...props} /> } />
       </>
     </div>
