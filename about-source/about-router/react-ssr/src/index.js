@@ -2,13 +2,12 @@ const React = require("react");
 
 const ReactDOM = require('react-dom');
 
-const App = require('./App');
+const Blog = require('./Blog');
 
-console.log('app>>', App)
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+   <Blog />
   </React.StrictMode>,
   document.getElementById('root')
 );
