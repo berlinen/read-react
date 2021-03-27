@@ -1,35 +1,18 @@
 const express = require("express");
+const path = require('path');
 
 const app = express();
 
 app.get('/', (req, res) => {
-  res.send(
-    `
-     <a href="/home">home</a>
-     <a href="/about">about</a>
-     <div id="app"></div>
-    `
-  );
+  res.sendFile(path.resolve(__dirname, './history.html'))
 })
 
 app.get('/home', (req, res) => {
-  res.send(
-    `
-     <a href="/home">home</a>
-     <a href="/about">about</a>
-     <div id="app"></div>
-    `
-  );
+  res.sendFile(path.resolve(__dirname, './history.html'))
 })
 
 app.get('/about', (req, res) => {
-  res.send(
-    `
-     <a href="/home">home</a>
-     <a href="/about">about</a>
-     <div id="app"></div>
-    `
-  );
+  res.sendFile(path.resolve(__dirname, './history.html'))
 })
 
 app.listen(8080, () => {
