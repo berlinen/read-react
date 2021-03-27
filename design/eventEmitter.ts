@@ -1,4 +1,4 @@
-import { RemainTimeDate } from './countDown'''
+import { RemainTimeDate } from './countDown'
 
 export enum EventName {
   CountdownStart = 'CountdownStart',

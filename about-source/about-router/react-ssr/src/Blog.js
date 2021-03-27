@@ -1,13 +1,15 @@
+// import React from 'react';
 const React = require("react")
-
-module.exports = class extends React.Component {
+class Blog extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      res: props.res || ""
+      res: props.res || (window && window.__INIT_DATA__ &&  window.__INIT_DATA__.res) || ""
     }
   }
   componentDidMount() {
+    console.log('>>>>this.sttae>>>>', this.state)
+    if(this.state.res) return null
     fetch("http://localhost:3003/api/data")
       .then(res => res.json())
       .then(({ res }) => {
@@ -23,3 +25,7 @@ module.exports = class extends React.Component {
     )
   }
 }
+// ==export default Blog;
+
+module.exports = Blog;
+

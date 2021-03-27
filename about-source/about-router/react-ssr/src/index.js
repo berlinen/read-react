@@ -1,8 +1,11 @@
-const React = require("react");
+import React from 'react';
 
-const ReactDOM = require('react-dom');
+import Blog from './Blog';
 
-const Blog = require('./Blog');
+import ReactDOM from 'react-dom';
+
+// const Blog = require('./Blog');
+
 
 
 ReactDOM.render(
