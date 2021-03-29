@@ -80,3 +80,48 @@ event.date = {errcode: 0};
 window.dispatchEvent(event)
 ```
 
+## 注入api
+
+1. h5 向 native 传递信息
+
+前提：native已经向window注入了各种api web就可以直接调用
+
+比如window.cusWebview = { setTitle: xxx };
+
+```js
+window.cusWebview.setTitle(params);
+```
+
+2. 准备接收native回调
+
+```js
+window['setTitle_callback_1'] = (errcode, res) => {
+  console.log(errcode)
+}
+```
+
+3. native调用回调函数
+
+native执行完成后 如何告诉h5
+
+```js
+window.cusWebview.setTitle(params);
+```
+
+```js
+const callbackName = 'setTitle_callback_1'
+
+window.callbackName.setTitle({
+  trigger:callbackName,
+  ...params
+})
+
+```
+
+```js
+window[callbackName] = (errcode, res) => {
+  console.llog(errcode)
+}
+```
+
+保证唯一性 eventname
