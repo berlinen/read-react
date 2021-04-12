@@ -22,3 +22,4 @@ export function render(fiber) {
   workInProgress = fiber;
   workLoop();
 }
+

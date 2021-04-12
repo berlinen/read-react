@@ -1,5 +1,5 @@
-import {FunctionComponent, HostComponent, IndeterminateComponent} from './ReactWorkTags';
-import {renderWithHooks} from './ReactFiberHooks';
+import {FunctionComponent, HostComponent, IndeterminateComponent} from './react-worktag';
+import { renderWithHooks  } from './react-fiber-hooks';
 /**
  *
  * @param {*} current 上一个fiber 初次挂载 的时候null
@@ -46,7 +46,7 @@ function mountIndeterminateComponent(current, workInProgress, Component) {
  */
 function reconcileChildren(current, returnFiber, children) {
   // 老得fiber和新的jsx进行对比
-  let oldChild = current.child;
+  let oldChild = current?.child;
   let prevFiber;
   for(let i = 0; i < children.length; i++){
     let fiber = { // 每个虚拟dom构建城一个fiber
